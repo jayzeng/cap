@@ -1,5 +1,8 @@
 from __future__ import division
-from ConfigParser import SafeConfigParser
+try:
+    from ConfigParser import SafeConfigParser as ConfigParser
+except ImportError:
+    from configparser import ConfigParser
 from src.reporter import TransactionReporter
 
 import argparse
@@ -9,7 +12,7 @@ import json
 
 def read_credential_config():
     credential_file = 'credential.ini'
-    parser = SafeConfigParser()
+    parser = ConfigParser()
     parser.read(credential_file)
 
     api_client_credential = dict()
@@ -46,7 +49,7 @@ def main(cli_args):
     monthly_costs = transaction_reporter.calculate_user_monthly_costs(all_user_transactions,
                                                                       filtering_rules,
                                                                       ignore_cc_payments=cli_args.ignore_cc_payments)
-    print json.dumps(monthly_costs, indent=4, sort_keys=True)
+    print(json.dumps(monthly_costs, indent=4, sort_keys=True))
 
 if __name__ == '__main__':
     logging.basicConfig(level=logging.INFO)

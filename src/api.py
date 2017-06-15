@@ -30,7 +30,7 @@ class LevelMoneyApiClient(object):
         }
 
         # push optional arguments
-        for optional_arg_key, optional_arg_value  in optional_args.iteritems():
+        for optional_arg_key, optional_arg_value  in optional_args.items():
             payload[optional_arg_key] = optional_arg_value
 
         return json.dumps(payload)

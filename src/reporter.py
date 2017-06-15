@@ -32,11 +32,11 @@ class TransactionReporter(object):
 
         for transaction in all_user_transactions:
             # inject filtering rules
-            for rule_name, rule_value in filter_rules.iteritems():
+            for rule_name, rule_value in filter_rules.items():
                 if isinstance(rule_value, list) and transaction.get(rule_name) in rule_value:
                     continue
 
-                if isinstance(rule_value, basestring) and transaction.get(rule_value) == rule_value:
+                if isinstance(rule_value, str) and transaction.get(rule_value) == rule_value:
                     continue
 
             transaction_date = transaction['transaction-time']
@@ -48,7 +48,7 @@ class TransactionReporter(object):
         # average: monthly average (total / 2)
         formatted_transactions_by_date = dict()
 
-        for transaction_date, transaction_amounts in all_transactions_by_date.iteritems():
+        for transaction_date, transaction_amounts in all_transactions_by_date.items():
             if transaction_date not in formatted_transactions_by_date:
                 formatted_transactions_by_date[transaction_date] = dict(income=list(), spent=list())
 
@@ -72,7 +72,7 @@ class TransactionReporter(object):
             now = datetime.now()
             one_day_in_seconds = 86400
 
-            for transaction_date, formatted_transactions in formatted_transactions_by_date.iteritems():
+            for transaction_date, formatted_transactions in formatted_transactions_by_date.items():
                 # transactions occurred in the past 24hrs
                 formatted_transaction_time = datetime.strptime(transaction_date, self.TRANSACTION_DATE_FORMAT)
 

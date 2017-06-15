@@ -2,6 +2,8 @@
 
 
 #### How to run: 
+Both Python 2.7 and 3.6 are supported, no external dependencies/libraries are required.  
+
 
 Update credential.ini to provide appropriate secrets. (Don't want to check in secrets to GitHub)
 ```ini
@@ -30,6 +32,11 @@ optional arguments:
 You can pass in one or all arguments, e.g::
 ```bash
 python main.py --ignore-donuts --crystal-ball --ignore-cc-payments
+```
+
+or with Python 3.6
+```bash
+python3.6 main.py --ignore-donuts --crystal-ball --ignore-cc-payments
 ```
 
 Sample output:
@@ -63,3 +70,5 @@ Future improvements:
 - Retry API requests if fail (can use @retryable or swap in ```requests```)
 - Cache API responses if response remains the same
 - More API response validations
+- Unit test + mock responses
+- Expose functionalities through REST API w/ Docker & Docker Compose
